@@ -1,0 +1,10 @@
+1) Fixed Winning condition for:		Guess Word
+													  Life Line Mode
+													  Letter Mode
+													  
+To-Do:
+1) Fix do-while loop for Marathon Mode
+2) Have obtain words from .txt
+3) Use Sets to obtain words for Ez Mode --> first letter of word
+4) Use List to display all previous inputs (rejects duplicates)
+5) Use Queues to store words for each round in Marathon Mode
