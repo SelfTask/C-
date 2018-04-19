@@ -1,0 +1,16 @@
+Checklist:
+------------
+Maps: Located in Scoreboard.cpp (Lines: 88 -189)
+
+Sets: Located in WordFetch.cpp (Lines: 90 – 201)
+
+Lists: Located in WordFetch.cpp (Lines 203-230)
+
+Stacks: Located in WordFetch.cpp (Lines 233-261)
+
+Queues: Located in WordFetch.cpp (Lines 264-300)
+
+Iterators:  Located in Scoreboard.cpp (lines 103-105), WordFetch.cpp (lines: 117 & 189-194 & 221-223)
+
+Algorithms: Located in WordFetch.cpp (lines: 117), Hangman.cpp (lines: 437), Scoreboard.cpp (Line 143)
+
