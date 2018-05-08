@@ -17,15 +17,16 @@ void sortArr(int *, int);
 void mergeSort(int *, int *, int, int, int *);
 
 int main(int argc, char** argv) {
-    const int size = 30;                //Holds the size of the full array
-    int *arrMain = new int [size];      //Allocate memory for unsorted array
-    
     //Seed for random number generator
     srand(time(NULL));
     
+    const int size = 30;               //Holds the size of the full array
+    int *arrMain = new int [size];      //Allocate memory for unsorted array
+    
+    
     //Filling array with random integers
     for(int i = 0; i < size; i++){
-        *(arrMain + i) = rand()%9+1;
+        *(arrMain + i) = rand()%10;
         //*(arrMain + i) = i;
     }
     
@@ -48,22 +49,24 @@ int main(int argc, char** argv) {
     for(int i = 0; i < sz_a; i++)
         arr1[i] = arrMain[i];
     
-    int tempIndx = sz_b;    //Stores the size of lower array to increment the 2nd half of the main unsorted array
+    int tempIndx = sz_a;    //Stores the size of lower array to increment the 2nd half of the main unsorted array
     
     for(int i = 0; i <= sz_b; i++){
         arr2[i] = arrMain[tempIndx++];
     }
     
     //Dislays unsorted elements of all arrays
+    cout<<"\t\t\t--- UNSORTED ---\n";
+    
     cout<<"\nMain Array = ";
     
     displayArray(arrMain, size);
     
-    cout<<"\nArray 1 = ";
+    cout<<"\nArray 1 =    ";
     
     displayArray(arr1, sz_a);
     
-    cout<<"\nArray 2 = ";
+    cout<<"\nArray 2 =    ";
     
     displayArray(arr2, sz_b);
     
@@ -121,17 +124,19 @@ void sortArr(int *a, int s){
 //Use to compare Upper and Lower arrays to be sorted inside the main array again
 void mergeSort(int *a, int *b, int sz_a, int sz_b, int *arrM){
  
-    int cntl = 0, cnth = 0;
+    int countLow = 0,
+        countHigh = 0;
     
     for(int i = 0; i < sz_a + sz_b; i++){
-        if(cntl == sz_a){
-            arrM[i]=b[cnth++];
-        }else if(cnth==sz_b){
-            arrM[i]=a[cntl++];
-        }else if(a[cntl]<b[cnth]){
-            arrM[i]=a[cntl++];
-        }else{
-            arrM[i]=b[cnth++];
-        }
+        if(countLow == sz_a)
+            arrM[i] = b[countHigh++];
+        else if(countHigh == sz_b)
+            arrM[i] = a[countLow++];
+        else if(a[countLow] < b[countHigh])
+            arrM[i] = a[countLow++];
+        else if(a[countLow] >= b[countHigh])
+            arrM[i] = b[countHigh++];
+        
+            
     }
 }
