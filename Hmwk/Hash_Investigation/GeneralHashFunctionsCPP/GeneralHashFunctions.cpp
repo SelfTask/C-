@@ -1,4 +1,7 @@
 #include "GeneralHashFunctions.h"
+#include <ctime> //For RNG within random string gen.
+#include <cstdlib>
+
 
 unsigned int RSHash(const std::string& str)
 {
@@ -175,8 +178,36 @@ unsigned int APHash(const std::string& str)
 /* End Of AP Hash Function */
 
 
+//Randomly generates a string then returns it
+
 std::string randString(){
-    std::string letters = "abcdefghijklmnopqrstuvwxyz0123456789"; 
     
-    std::string rndKey = "";
-}
+    //Char array of possible characters
+    const char letters[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m',
+    'n','o','p','q','r','s','t','u','v','w','x','y','z','0','1','2','3','4','5',
+    '6','7','8','9'}; 
+    
+    //Stores the number of elements in char[] letters
+    int lengthStr = sizeof(letters);
+    
+    //Generate a random length for key
+    int rndSize = rand() % 10 + 10;
+    
+    //Allocate memory for random strings
+    char* rndKey = new char[rndSize];
+
+    //Assigning ASCII values into key
+    for(int i = 0; i < rndSize; i++)
+        rndKey[i] = letters[rand() % lengthStr];
+    
+    //Assign NULL at the end of string to signify that it has ended
+    rndKey[rndSize] = '\0';
+    
+    //Assigns generated char* to string for return
+    std::string tempStr = rndKey;
+    
+    //Deallocate array
+    delete[] rndKey;
+    
+return tempStr;}
+ 
