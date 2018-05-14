@@ -156,14 +156,14 @@ int main(int argc, char* argv[])
 
         if(maxNumCol == 1 && first == false){
             cout<<"\n****** First Collision has occured when i = "<<i<<", key = "
-                <<key<<", RS Hash value = "<<nRS<<endl<<endl<<" ******\n";
+                <<key<<", RS-Hash Value = "<<nRS<<endl<<endl<<" ******\n";
             first = true;
         }
         
         i++;
    };
    cout<<"\nMax Number of Collisions = "<<maxNumCol<<endl;
-   cout<<"i = "<<i<<endl;
+   cout<<"Number of Loops Iterated = "<<i<<endl;
 
    return true;
 }
