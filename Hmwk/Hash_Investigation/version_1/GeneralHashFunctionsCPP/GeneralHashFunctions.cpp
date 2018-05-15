@@ -197,11 +197,11 @@ std::string randString(){
     char* rndKey = new char[rndSize];
 
     //Assigning ASCII values into key
-    for(int i = 0; i < rndSize; i++)
+    for(int i = 0; i < rndSize - 1; i++)
         rndKey[i] = letters[rand() % lengthStr];
     
     //Assign NULL at the end of string to signify that it has ended
-    rndKey[rndSize] = '\0';
+    rndKey[rndSize - 1] = '\0';
     
     //Assigns generated char* to string for return
     std::string tempStr = rndKey;
