@@ -1,0 +1,9 @@
+Reveals the pattern for each traversal.
+
+1) Level Order (Non-Recursive)[Zigzag (Left->Right->Left->...]
+
+2) In-Order (Recursive) [Left -> Root -> Right]
+
+3) Pre-Order (Recursive) [Root -> Left -> Right]
+
+4) Post-Ordered (Recursive) [Left -> Right -> Root]
