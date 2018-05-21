@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   Hash_Chaining.h
- * Author: Kevin
- *
+ * Author: Kevin Vo
+ * Instructor: Dr. Lehr
+ * Course: CSC-17C (42475)
+ * Assignment: Hash Comparison
+ * Purpose: Determine their order. O(N), O(log(N)), and O(1)
+            with Search algorithms: Linear, Binary, and Hash
  * Created on May 19, 2018, 11:20 PM
  */
 
@@ -29,10 +27,10 @@ public:
     Hash(int);  // Constructor
  
     //Inserts an array of keys on to hash table
-    void insertItem(string*);
+    void insert(string*);
  
     //Uses RS-Hash to generate hash value
-    unsigned int hashFunction(string str){
+    unsigned int RSHash(string str){
         unsigned int b = 845961;
         unsigned int a = 68456;
         unsigned int hash = 0;
@@ -46,10 +44,10 @@ public:
     }
  
     //Displays the entire hash table
-    void displayHash();
+    void displayHashTable();
     
     //Determines if a key 
-    bool findHash(string);
+    bool findHash(string, int&, int&, int&);
 };
 
 //Constructor
@@ -60,11 +58,11 @@ Hash::Hash(int N)
 }
  
 //Pushes keys onto hash table
-void Hash::insertItem(string *key)
+void Hash::insert(string *key)
 {
     for(int i = 0; i < N; i++){
         //Generates an index for the key
-        int index = hashFunction(key[i])%N;
+        int index = RSHash(key[i])%N;
         //pushes the key value onto table with selected index
         HashTable[index].push_back(key[i]); 
     }
@@ -73,7 +71,7 @@ void Hash::insertItem(string *key)
 
  
 //Displays Hash Table
-void Hash::displayHash() {
+void Hash::displayHashTable() {
   for (int i = 0; i < N; i++) {
     cout << i;
     for (auto x : HashTable[i])
@@ -82,8 +80,11 @@ void Hash::displayHash() {
   }
 }
 
-bool Hash::findHash(string key){
-    int index = hashFunction(key) % N;
+bool Hash::findHash(string key, int& ceq, int &ccom, int &arith){
+    ceq++;
+    arith++;
+    int index = RSHash(key) % N;
+    ccom++;
     if(HashTable[index].back() != "\0")
         return true;
     else 

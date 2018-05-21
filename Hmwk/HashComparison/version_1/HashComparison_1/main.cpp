@@ -1,26 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   main.cpp
- * Author: Kevin
- *
- * Created on May 19, 2018, 2:28 PM
+ * Author: Kevin Vo
+ * Instructor: Dr. Lehr
+ * Course: CSC-17C (42475)
+ * Assignment: Hash Comparison
+ * Purpose: Determine their order. O(N), O(log(N)), and O(1)
+            with Search algorithms: Linear, Binary, and Hash
+ * Created on May 19, 2018, 11:20 PM
  */
 
 #include <cstdlib>
 #include <iostream>
-#include <ctime>
-#include <set>
+#include <ctime>       //RNG
+#include <set>        //Use to ensure that each string is unique
 #include <algorithm> //For sorting array for Binary search
 
-#include "Linear_Binary_Searches.h"
-#include "Hash_Chaining.h"
+#include "Linear_Binary_Searches.h" //Contains FNs for Linear and Binary Searches
+#include "Hash_Chaining.h"  //Contains hashing table's class
 
 using namespace std;
+
 
 string rndStr(const int);
 void ptrArr(string*, const int);
@@ -31,9 +30,17 @@ int main(int argc, char** argv) {
     set<string> s;
     
     const int size = 20;
-    for(int k = 1; k <= 8; k*=2){
-    int N = 10000000 * k;
+ 
+    int ceqL = 0, ccomL = 0, cincrL = 0, carithL = 0,
+        ceqB = 0, ccomB = 0, cincrB = 0, carithB = 0,
+        ceqH = 0, ccomH = 0, cincrH = 0, carithH = 0;
+    
+        
+    const int N = 2000000;
+    
+    const int loop = 20000000; 
     cout<<"\nLet N = "<<N<<endl;
+    
     string *arr1 = new string[N];
     string *arr2 = new string[N];
     string *arr3 = new string[N];
@@ -67,39 +74,69 @@ int main(int argc, char** argv) {
     }
     
     sort(arr2, arr2+size);
-    string findVal = "6";
+    sort(un_knownHalf, un_knownHalf+size);
+    string findVal = un_knownHalf[rand()%(N-1)];
     int results;
-    
-    const int loop = 10000000;        
-    
+          
+
     int start = time(0);
-    for(int i = 0; i < loop; i++)
+    for(int i = 0; i < loop; i++){
+        
         // Search the array for findVal
-        searchList(arr1, size, findVal);
+        searchList(arr1, size, findVal, ceqL, ccomL, cincrL);
+        
+    }
     int end = time(0);
+
+    cout<<"\nwhen LOOP = "<<loop;
+    cout<<"\nRuntime for Linear Search (SECONDS) = "<<end-start<<endl;
+    cout<<"\nOperations of Equals = "<<ceqL;
+    cout<<"\nOperations of Compares = "<<ccomL;
+    cout<<"\nOperations of Increments = "<<cincrL;
+    cout<<"\nOperations of Arithmetic = "<<carithL;
+    cout<<"\nTotal Operations = "<<ceqL+ccomL+cincrL<<endl;
+    cout<<"\n--------------------------------------------------------\n";
+
     
-    cout<<"\nRuntime for Linear Search = "<<end-start<<endl;
-    //cout<<"\nResults = "<<results<<endl;
-    
+  
     start = time(0);
-    for(int i = 0; i < loop; i++)
-        binarySearch(arr2, size, findVal);
+    for(int i = 0; i < loop; i++){
+        
+        binarySearch(arr2, size, findVal, ceqB, ccomB, cincrB, carithB);
+        
+    }
     end = time(0);
-    
-    cout<<"\nRuntime for Binary Search = "<<end-start<<endl;
-    //cout<<"\nResults = "<<results<<endl;
+
+    cout<<"\nwhen LOOP = "<<loop;
+    cout<<"\nRuntime for Binary Search (SECONDS) = "<<end-start<<endl;
+    cout<<"\nOperations of Equals = "<<ceqB;
+    cout<<"\nOperations of Compares = "<<ccomB;
+    cout<<"\nOperations of Increments = "<<cincrB;
+    cout<<"\nOperations of Arithmetic = "<<carithB;
+    cout<<"\nTotal Operations = "<<ceqB+ccomB+cincrB+carithB<<endl;
+    cout<<"\n--------------------------------------------------------\n";
     
     
     Hash h(N);
-    h.insertItem(arr3);
+    h.insert(arr3);
     
+ 
     start = time(0);
     for(int i = 0; i < loop; i++){ 
-        h.findHash(findVal);
+        
+        h.findHash(findVal, ceqH, ccomH, carithH);
+
     }
     end = time(0);
+    cout<<"\nwhen LOOP = "<<loop;
+    cout<<"\nRuntime for Hash Linked List (SECONDS) = "<<end-start<<endl;
+    cout<<"\nOperations of Equals = "<<ceqH;
+    cout<<"\nOperations of Compares = "<<ccomH;
+    cout<<"\nOperations of Increments = "<<cincrH;
+    cout<<"\nOperations of Arithmetic = "<<carithH;
+    cout<<"\nTotal Operations = "<<ceqH+ccomH+cincrH+carithH<<endl;
+    cout<<"\n--------------------------------------------------------\n";
     
-    cout<<"\nRuntime for Hash Linked List = "<<end-start<<endl;
     // display the Hash table
     //h.displayHash();
     /*
@@ -118,7 +155,7 @@ int main(int argc, char** argv) {
     delete[] arr2;
     delete[] arr3;
     delete[] un_knownHalf;
-    }
+    
     return 0;
 }
 

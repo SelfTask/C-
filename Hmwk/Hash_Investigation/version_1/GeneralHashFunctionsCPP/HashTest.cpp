@@ -31,16 +31,28 @@
 #include <iomanip>
 #include "GeneralHashFunctions.h"
 #include <set>  //Use store hash values to find collisions
+#include <ctime>
 
 using namespace std;
 
 int main(int argc, char* argv[])
 {
+    for(int k = 0; k < 4; k++){
+        int start = time(0);
     int maxNumCol = 0;
     int checkFirst = 0;
     int i = 0;
     bool first = false;
-    const int numTrial = 1000000;
+    int numTrial = 1000000;
+    
+    if(k == 0)
+        numTrial = 1000000;
+    else if(k == 1)
+        numTrial = 2000000;
+    else if(k == 2)
+        numTrial = 4000000;
+    else if(k == 3)
+        numTrial = 8000000;
     
     //Declaring set for each hash to avoid collision from one hash to another
     set<int> rs;
@@ -198,6 +210,8 @@ int main(int argc, char* argv[])
     cout<<"\nMAX Number of Collisions from every Hash Function = "<<maxNumCol<<endl<<endl;
     
     cout<<"Number of Iterations = "<<i<<endl;
-
+    
+    cout<<"\nTime = "<<time(0) - start<<endl;
+    }
    return 0;
 }
