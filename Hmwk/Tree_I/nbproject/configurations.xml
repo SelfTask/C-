@@ -4,7 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Node.h</itemPath>
+      <itemPath>BalancedTree.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,6 +13,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>BalancedTree.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -37,7 +38,9 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      <item path="BalancedTree.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BalancedTree.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -62,7 +65,9 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Node.h" ex="false" tool="3" flavor2="0">
+      <item path="BalancedTree.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="BalancedTree.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

@@ -11,20 +11,15 @@
  
 using namespace std;
  
-#include "Node.h"
+#include "BalancedTree.h"
 
-//Prototypes
-Node *createNode(int);
-void formatTree(Node **, int[], int, int);
-void print_PreOrder(Node *);
-void print_InOrder(Node *);
+
  
 int main(int argc, char* argv[]){
     
     int m;
     
-    Node *root;
-    
+    BalancedBT obj;
     cout<<"\nEnter m (NUMBER OF ELEMENTS): ";
     cin>>m;
     
@@ -35,58 +30,20 @@ int main(int argc, char* argv[]){
         cin>>arr[i];
     }
     
-    formatTree(&root, arr, 0, m-1);
+    obj.runformatTree(arr, 0, m-1);
     
-    cout<<"\nIn-order: ";
-    print_InOrder(root);
+    cout<<"\nIn-Order: ";
+    obj.show_InOrder();
     
     cout<<endl;
     
-    cout<<"\nPre-order: ";
-    print_PreOrder(root);
+    cout<<"\nPre-Order: ";
+    obj.show_PreOrder();
+    
+    cout<<"\nLevel-Order: ";
+    obj.show_LevelOrder();
     
     delete[] arr;
     return 0;
 }
 
-Node *createNode(int data){
-    
-    Node *newNode = new Node;
- 
-    if(newNode != NULL){
-        newNode->data = data;
-        newNode->left = NULL;
-        newNode->right = NULL;
-    }
- 
-    return newNode;
-}
- 
-void formatTree(Node **root, int arr[], int start, int end){
-    
-    if(start <= end){
-        int mid = (start + end + 1) / 2;
- 
-        *root = createNode(arr[mid]);
-        formatTree(&((*root)->left), arr, start, mid - 1);
-        formatTree(&((*root)->right), arr, mid + 1, end);
-    }
-}
- 
-void print_PreOrder(Node *root){
-    
-    if(root != NULL){
-        cout<<root->data<<"  ";
-        print_PreOrder(root->left);
-        print_PreOrder(root->right);
-    }
-}
-
-void print_InOrder(Node *root){
-    
-    if(root != NULL){
-        print_InOrder(root->left);
-        cout<<root->data<<"  ";
-        print_InOrder(root->right);
-    }
-}
