@@ -10,29 +10,43 @@
 
 #include <iostream>
 #include "BalancedTree.h"
+#include <ctime>    //For RNG
 
 using namespace std;
  
 int main(int argc, char* argv[]){
+    //Seed for RNG
+    srand(time(NULL));
     
-    int m;  //Stores number of elements
+    int m = 10;  //Stores number of elements
     int inData, //Store data input
         numDelete;  //Stores number of nodes to be deleted
     
     //Object for the tree class
     BalancedBT tree;
     
+    cout<<"\nLet m (NUMBER OF ELEMENTS) = "<<m<<endl;
  
-    cout<<"\nEnter m (NUMBER OF ELEMENTS): ";
-    cin>>m;
+    //cout<<"\nEnter m (NUMBER OF ELEMENTS): ";
+    //cin>>m;
  
+    /*
     //Inserts that onto tree
     for(int i = 0; i < m; i++){
         cout<<"Enter Data for Element #"<<i+1<<": ";
         cin>>inData;
         tree.runInsert(inData);
     }
+    */
     
+    cout<<"\nNow randomly filling the tree...\n";
+    //Randomly fills in Tree
+    for(int i = 0; i < m; i++){
+        inData = rand()%99;
+        tree.runInsert(inData);
+    }
+    
+    cout<<endl;
     //Displays tree in Pre, In, Post, and Level order
     tree.show_allOrder();
 
