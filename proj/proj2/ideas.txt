@@ -1,0 +1,20 @@
+When to use each container:
+
+1) List -- 
+		ArrayList ----- 	When you want to search based on the index
+			  				   	   Better performance when there will not be anymore modification to the list
+		Linked List --- 	When you think there's going to be a lot of updates for the list (lots of modifications)
+		Vector --------- 	 
+		
+		
+		Set: when you don't want duplicates
+		List: when you want the data to be sorted in some order
+		Map: when you want to be able to search through the data.
+
+
+Maps - GUESS WORD ----> Key ----> Hash Map;;;; USE AS A LIFE LINE, ONE FREE GUESS
+Sets -   EASIER, MODE CHOOSE WORD ----> WITH A STARTING LETTER OF THAT PERSON'S CHOICE  
+Lists -   DISPLAY ALL PREVIOUS INPUTS FROM NEWEST TO OLDEST
+Stacks (LIFO)----> use to pop out number of turns left
+Queues (FIFO)---> stores a list of words for each round
+
