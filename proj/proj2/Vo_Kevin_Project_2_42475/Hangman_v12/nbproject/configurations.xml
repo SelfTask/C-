@@ -17,6 +17,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Hangman.cpp</itemPath>
+      <itemPath>Hash.cpp</itemPath>
       <itemPath>Scoreboard.cpp</itemPath>
       <itemPath>WordFetch.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -46,6 +47,8 @@
       <item path="Hangman.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Hangman.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Hash.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Hash.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -83,6 +86,8 @@
       <item path="Hangman.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Hangman.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Hash.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Hash.h" ex="false" tool="3" flavor2="0">
       </item>

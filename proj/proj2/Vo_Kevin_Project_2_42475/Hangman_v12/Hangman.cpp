@@ -16,6 +16,7 @@
 #include "Hangman.h"
 #include "WordFetch.h"
 #include "Scoreboard.h"
+#include "Hash.h"   //For using hash to find existing words in library
 #include <algorithm>    //To use STL's sort algorithm
 
 
@@ -91,6 +92,7 @@ void Hangman::coreGame(int numRound, string mode){
         }
 
         cout<<endl<<"(for testing purposes) chosenWord = "<<chosenWord<<endl;
+        
         
         //Holds the status of guessed characters and open slots left
         storeLine = "";
@@ -349,9 +351,16 @@ Hangman::~Hangman(){
 //Display the main menu option
 void Hangman::menuDisplay(){
     char inChoice;  //Store user's choice within the menu
+    Hash table;
     
+   
+    
+    
+    //table.printTable();
+    cout<<endl;
     do{
         //Displays the main menu
+        cout<<endl;
         cout<<"Enter 1 to play Hangman"<<endl;
         cout<<"Enter 2 to play EZ-Mode (choose the first letter of a word and"
             <<" that same letter will be given to you.)"<<endl;
@@ -361,6 +370,7 @@ void Hangman::menuDisplay(){
         cout<<"Enter 5 to display the rules"<<endl;
         cout<<"Enter 6 to display scoreboard"<<endl;
         cout<<"Enter 7 to view 25 Free Words for EZ-Mode"<<endl;
+        cout<<"Enter 8 to search existing words on Hash Table"<<endl;
         cout<<"Enter any other key to exit"<<endl;
         cout<<"User Input: ";
         cin>>inChoice;
@@ -378,6 +388,7 @@ void Hangman::menuDisplay(){
             case '5':{ rulesDisplay(); break;}
             case '6':{ sc.readNameScore(); menuDisplay();break;}
             case '7':{ fetch.DisplayListSet(); menuDisplay();break;}
+            //case '8':{ table.searchWord(); menuDisplay(); break; }
 
             default: cout<<"\nOption: Exit has been selected."
                          <<"Terminating..."<<endl; break;
@@ -417,6 +428,7 @@ void Hangman::marathonMode(){
 //Game mode that allows user to enter a custom word for another player
 //This word will then be added to the library of words for future games
 void Hangman::customWordMode(){
+    Hash hashTable;
     string customWord;   
     int numRounds;   //Asks for confirmation on number of rounds
     
@@ -463,10 +475,47 @@ void Hangman::customWordMode(){
         
         //Stores the custom words for Custom Word Mode
         fetch.queueCustomWords(temp[j]);
+        hashTable.insert(temp[j]);
+        
     }
     
     //Deallocate temp[]
     delete[] temp;
+    cout<<"\nCustom Word Mode has begun. The Host may allow the player to begin.\n";
+    cout<<"Push ENTER to continue...";
+    cin.ignore();
+    
+    char choiceHash;
+    do{
+        cout<<"\nYou have chosen the Custom Word Mode.\n";
+        cout<<"Would you like to search the Hash Table for possible words"
+            <<" the host might have might have entered previously? (y/n): ";
+        cin>>choiceHash;
+
+        if(choiceHash == 'Y')
+            choiceHash = 'y';
+        else if(choiceHash == 'N')
+            choiceHash = 'n';
+
+        if(choiceHash != 'y' && choiceHash != 'n')
+            cout<<"Error: Input must be \"y\" for YES or \"n\" for No.\n";
+    }while(choiceHash != 'n');
+    if(choiceHash == 'y' || choiceHash == 'n'){
+        do{
+            
+            hashTable.searchWord();
+            cout<<"\nWould you like to search again? (y/n): ";
+            cin>>choiceHash;
+            
+            if(choiceHash == 'Y')
+                choiceHash = 'y';
+            else if(choiceHash == 'N')
+                choiceHash = 'n';
+            
+            if(choiceHash != 'y' && choiceHash != 'n')
+                cout<<"Error: Input must be \"y\" for YES or \"n\" for No.\n";
+        }while(choiceHash != 'y' && choiceHash != 'n');
+    }
     coreGame(numRounds, "custom");
 }
 

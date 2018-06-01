@@ -1,57 +1,60 @@
 #include "Hash.h"
+#include <fstream>  //Use to obtain words from words.txt
+#include <string>
 
-#include <cstdlib>
-#include <iostream>
-#include <string>       //For string manipulation
-
-using namespace std;
+//Constant string variable to alert that a word DNE in library
+const string alertDNE = "empty";
 
 Hash::Hash(){
     numItem = 0;
     for(int i = 0; i < tableSize; i++){
         HashTable[i] = new Item;
-        HashTable[i]->name = "empty";
-        HashTable[i]->initial = "empty";
+        HashTable[i]->initial = alertDNE;
         HashTable[i]->next = NULL;
     }
-        
+    
+   
         
 }
 
-int Hash::phoneHash(string init){
-    int hashVal = 0;
-    int temp;
-    for(int i = 0; i < 3; i++){
-        if(init[i] == 'A' || init[i] == 'B' || init[i] == 'C')
-            temp = 2;
-        else if(init[i] == 'D' || init[i] == 'E' || init[i] == 'F')
-            temp = 3;
-        else if(init[i] == 'G' || init[i] == 'H' || init[i] == 'I')
-            temp = 4;
-        else if(init[i] == 'J' || init[i] == 'K' || init[i] == 'L')
-            temp = 5;
-        else if(init[i] == 'M' || init[i] == 'N' || init[i] == 'O')
-            temp = 6;
-        else if(init[i] == 'P' || init[i] == 'Q' || init[i] == 'R' || init[i] == 'S')
-            temp = 7;
-        else if(init[i] == 'T' || init[i] == 'U' || init[i] == 'V')
-            temp = 8;
-        else if(init[i] == 'W' || init[i] == 'X' || init[i] == 'Y' || init[i] == 'Z')
-            temp = 9;
+void Hash::storeWordInHash(){
+    string line;
+    ifstream rFileHash ("words.txt");
+    if(rFileHash.is_open()){
+        while( getline (rFileHash,line) ){
+                    //cout<<endl<<line;
+            insert(line);
+        }
         
-        hashVal += temp;
+        rFileHash.close();
     }
-return hashVal;}
+    else cout<<"Unable to open words.txt for hashing.\n"; 
+}
+unsigned int Hash::RSHash(string str){
+
+    unsigned int b = 378551;
+    unsigned int a = 63689;
+    unsigned int hash = 0;
+    unsigned int i = 0;
+    unsigned int len = str.length();
+
+    for (i = 0; i < len; i++)
+    {
+            hash = hash * a + (str[i]);
+            a *= b;
+    }
+
+    return hash;
+}
 
 
-void Hash::insert(string name, string initial){
+void Hash::insert(string initial){
     numItem++;
-    int index = phoneHash(name); //get an integer index from hash with name as the key
+    unsigned int index = RSHash(initial) % 1000; //get an integer index from hash with name as the key
     
     //Check if that index of the Hash Table array is empty
-    if(HashTable[index]->name == "empty"){
+    if(HashTable[index]->initial == alertDNE){
         //if it is then go ahead an assign the values accordingly
-        HashTable[index]->name = name;
         HashTable[index]->initial = initial;
     }else{
         
@@ -61,7 +64,6 @@ void Hash::insert(string name, string initial){
         Item *n = new Item; //Creating new Item to store info if HashTable[index] is filled already
         
         //Assign values to the new node
-        n->name = name;
         n->initial = initial;
         n->next = NULL;
 
@@ -82,7 +84,7 @@ int Hash::countChain(int index){
     Item *ptr = HashTable[index];
     int counter = 0;
     
-    if(HashTable[index]->name == "empty"){
+    if(HashTable[index]->initial == alertDNE){
         return counter;
     }
     while(ptr != NULL){
@@ -100,11 +102,12 @@ void Hash::printTable(){
     cout<<"Number of Items in the Hash Table: "<<numOfItems;
     cout<<"\n--------------------------------\n";
     for(int i = 0; i < tableSize; i++){
-        cout<<"{ "<<HashTable[i]->name<<" }";
-        if(HashTable[i]->name != "empty"){
+        cout<<"*[ "<<i<<" ]* -> ";
+        cout<<HashTable[i]->initial<<" --> ";
+        if(HashTable[i]->initial != alertDNE){
             Item *ptr = HashTable[i];
             while(ptr != NULL){
-                cout<<" --> [ "<<ptr->initial<<" ]";
+                cout<<" --> "<<ptr->initial;
                 ptr = ptr->next;
             };
         }
@@ -115,17 +118,29 @@ void Hash::printTable(){
 
 //Prints only one bucket
 void Hash::printItem(int index){
-    cout<<"HashTable[ "<<index<<" ]->name = "<<HashTable[index]->name<<endl;
+    if(HashTable[index]->initial != alertDNE)
+        cout<<"\nThe words you entered carry the same has as these:\n";
     
-    if(HashTable[index]->name != "empty")
-        cout<<"HashTable[ "<<index<<" ]->initial = "<<HashTable[index]->initial<<endl;
+    cout<<HashTable[index]->initial<<endl;
+
     if(countChain(index) > 1){
         Item *ptr = HashTable[index];
-        cout<<"\t\t\t\t";
         while(ptr != NULL){
-            cout<<" --> [ "<<ptr->initial<<" ]";
+            cout<<endl<<ptr->initial;
             ptr = ptr->next;
             
         };
     }
+    cout<<endl;
+}
+
+void Hash::searchWord(){
+    string word;
+    
+    cout<<"\nEnter a word to be searched: ";
+    cin>>word;
+
+    unsigned int index = RSHash(word) % 1000;
+    cout<<endl<<"index = "<<index<<endl;
+    printItem(index);
 }

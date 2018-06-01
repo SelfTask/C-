@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Hangman.o \
+	${OBJECTDIR}/Hash.o \
 	${OBJECTDIR}/Scoreboard.o \
 	${OBJECTDIR}/WordFetch.o \
 	${OBJECTDIR}/main.o
@@ -69,6 +70,11 @@ ${OBJECTDIR}/Hangman.o: Hangman.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Hangman.o Hangman.cpp
+
+${OBJECTDIR}/Hash.o: Hash.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Hash.o Hash.cpp
 
 ${OBJECTDIR}/Scoreboard.o: Scoreboard.cpp
 	${MKDIR} -p ${OBJECTDIR}

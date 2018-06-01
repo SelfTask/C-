@@ -871,3 +871,9 @@ mouth
 mouthtried
 suit
 wear
+apple
+dog
+pie
+apple
+cat
+dog
