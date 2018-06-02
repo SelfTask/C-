@@ -3,7 +3,7 @@
 #include <string>
 
 //Constant string variable to alert that a word DNE in library
-const string alertDNE = "empty";
+const string alertDNE = "WORD-DOES-NOT-EXIST";
 
 Hash::Hash(){
     numItem = 0;
@@ -119,7 +119,7 @@ void Hash::printTable(){
 //Prints only one bucket
 void Hash::printItem(int index){
     if(HashTable[index]->initial != alertDNE)
-        cout<<"\nThe words you entered carry the same has as these:\n";
+        cout<<"\nYour hinted words may be:\n";
     
     cout<<HashTable[index]->initial<<endl;
 
@@ -134,13 +134,17 @@ void Hash::printItem(int index){
     cout<<endl;
 }
 
+//Searches words on hash table
 void Hash::searchWord(){
     string word;
     
+    //Request word to be hashed and used as index for hash table
     cout<<"\nEnter a word to be searched: ";
     cin>>word;
 
+    //generates index for hash table with RS-Hash
     unsigned int index = RSHash(word) % 1000;
-    cout<<endl<<"index = "<<index<<endl;
+    
+    //Prints the item
     printItem(index);
 }

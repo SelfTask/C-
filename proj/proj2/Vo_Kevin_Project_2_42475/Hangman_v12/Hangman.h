@@ -15,6 +15,7 @@
 
 #include "Scoreboard.h"
 #include "WordFetch.h"
+#include "Hash.h"   //For using hash to find existing words in temp. custom lib.
 
 using namespace std;
 
@@ -24,6 +25,7 @@ private:
     Scoreboard sc;   //Object for class handling scores & usernames w/ STL's Map
     WordFetch fetch; //Obtains words from containers
     
+    Hash hashTable;  //Uses hash to allow player to search temp. custom library
     
    //Base game of Hangman
    void coreGame(int, string);
@@ -44,6 +46,9 @@ private:
    //Displays the rules
    void rulesDisplay();
    
+   //Uses hash table to for hint of a word
+   void searchWordHash();
+   
 public:
     //Constructor
     //Access entire library
@@ -58,6 +63,8 @@ public:
    
    //Displays the mention for the option
    void menuDisplay();
+   
+   
     
 };
 

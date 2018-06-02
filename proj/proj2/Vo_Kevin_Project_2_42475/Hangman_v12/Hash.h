@@ -54,7 +54,10 @@ class Hash{
             return HashTable[indx]->initial; 
         }
         
+        //Store custom words on hash table
         void storeWordInHash(); 
+        
+        //Searches for words on hash table
         void searchWord();
 
 };

@@ -16,7 +16,6 @@
 #include "Hangman.h"
 #include "WordFetch.h"
 #include "Scoreboard.h"
-#include "Hash.h"   //For using hash to find existing words in library
 #include <algorithm>    //To use STL's sort algorithm
 
 
@@ -178,10 +177,17 @@ void Hangman::coreGame(int numRound, string mode){
                             <<"(Once per round)\n";
                     
                     cout<<"Enter \"3\" to see numbers you have previously entered\n";
-
+                    
+                    if(mode == "custom")
+                        cout<<"Enter \"4\" to search Hash Table for hints on the word.\n";
+                    
                     //Prompts player for input
                     cout<<"Enter a letter: ";
                     cin>>input;
+                    
+                    if(input == "4"){
+                        searchWordHash();
+                    }
                     
                     if(input == "3")
                         fetch.displayInputList();
@@ -216,7 +222,7 @@ void Hangman::coreGame(int numRound, string mode){
                 //}
 
                 //Checks if inputed character is present in the chosen word
-                if(input != "1" && input != "2" && input != "3"){
+                if(input != "1" && input != "2" && input != "3" && input != "4"){
                     fetch.storeInputList(input); //Stores the guessed values per turn
                     for(int i = 0; i < chosenWord.length(); i++){
                         //for(int j = 0; j < chosenWord.length();j++){
@@ -299,8 +305,9 @@ void Hangman::coreGame(int numRound, string mode){
                 contiTurn = false;
             }
             
+            //Does not count turn if options are chosen
             if(!letterRight && input != "0" && input!= "1" && input!= "2" 
-                    && input!= "3")
+                    && input!= "3" && input != "4")
                 numTurns++;
             
         }while(numTurns <= maxTurns && countSlot != 0 && contiTurn);
@@ -428,7 +435,6 @@ void Hangman::marathonMode(){
 //Game mode that allows user to enter a custom word for another player
 //This word will then be added to the library of words for future games
 void Hangman::customWordMode(){
-    Hash hashTable;
     string customWord;   
     int numRounds;   //Asks for confirmation on number of rounds
     
@@ -481,41 +487,8 @@ void Hangman::customWordMode(){
     
     //Deallocate temp[]
     delete[] temp;
-    cout<<"\nCustom Word Mode has begun. The Host may allow the player to begin.\n";
-    cout<<"Push ENTER to continue...";
-    cin.ignore();
-    
-    char choiceHash;
-    do{
-        cout<<"\nYou have chosen the Custom Word Mode.\n";
-        cout<<"Would you like to search the Hash Table for possible words"
-            <<" the host might have might have entered previously? (y/n): ";
-        cin>>choiceHash;
 
-        if(choiceHash == 'Y')
-            choiceHash = 'y';
-        else if(choiceHash == 'N')
-            choiceHash = 'n';
-
-        if(choiceHash != 'y' && choiceHash != 'n')
-            cout<<"Error: Input must be \"y\" for YES or \"n\" for No.\n";
-    }while(choiceHash != 'n');
-    if(choiceHash == 'y' || choiceHash == 'n'){
-        do{
-            
-            hashTable.searchWord();
-            cout<<"\nWould you like to search again? (y/n): ";
-            cin>>choiceHash;
-            
-            if(choiceHash == 'Y')
-                choiceHash = 'y';
-            else if(choiceHash == 'N')
-                choiceHash = 'n';
-            
-            if(choiceHash != 'y' && choiceHash != 'n')
-                cout<<"Error: Input must be \"y\" for YES or \"n\" for No.\n";
-        }while(choiceHash != 'y' && choiceHash != 'n');
-    }
+  
     coreGame(numRounds, "custom");
 }
 
@@ -631,4 +604,44 @@ void Hangman::rulesDisplay(){
 
     //Returns to the menu after displaying the rules
     menuDisplay();
+}
+
+//Uses RS-Hash with hash table to find words on temp custom lib for hints 
+void Hangman::searchWordHash(){
+    char choiceHash;
+    
+    //Confirms that player wants to use hash table for hints
+    do{
+        cout<<"\nYou have chosen the Custom Word Mode.\n";
+        cout<<"Would you like to search the Hash Table for possible words"
+            <<" the host might have might have entered previously? (y/n): ";
+        cin>>choiceHash;
+
+        if(choiceHash == 'Y')
+            choiceHash = 'y';
+        else if(choiceHash == 'N')
+            choiceHash = 'n';
+
+        if(choiceHash != 'y' && choiceHash != 'n')
+            cout<<"Error: Input must be \"y\" for YES or \"n\" for No.\n";
+    }while(choiceHash != 'n' && choiceHash != 'y');
+    
+    //Allows player to interact with hash table for hints
+    //Then ask if player want to interact again
+    if(choiceHash == 'y'){
+        do{
+            //Calls to hash table
+            hashTable.searchWord();
+            cout<<"\nWould you like to search again? (y/n): ";
+            cin>>choiceHash;
+            
+            if(choiceHash == 'Y')
+                choiceHash = 'y';
+            else if(choiceHash == 'N')
+                choiceHash = 'n';
+            
+            if(choiceHash != 'y' && choiceHash != 'n')
+                cout<<"Error: Input must be \"y\" for YES or \"n\" for No.\n";
+        }while(choiceHash != 'n');
+    }
 }

@@ -877,3 +877,12 @@ pie
 apple
 cat
 dog
+dear
+eggs
+hub
+you
+net
+truck
+climb
+limp
+pull
