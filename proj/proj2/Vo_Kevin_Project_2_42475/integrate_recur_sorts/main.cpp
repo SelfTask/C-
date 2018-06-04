@@ -80,14 +80,19 @@ int main(int argc, char** argv) {
     bool isPostOrder = false;
     
     do{
-        cout<<"\nWords in Pre-Order (ABC Order):  ";
-        tree.show_PreOrder();
+        if(inputSort == '1'){
+            cout<<"\nWords in Pre-Order (ABC Order):  ";
+            tree.show_PreOrder();
+        }else{
+            cout<<"\nWords in Pre-Order (Reversed Order):  ";
+            tree.show_PreOrder();
+        }
         
         if(inputSort == '2'){
-            cout<<"\n\nWords in In-Order (Reverse Order):  ";
+            cout<<"\n\nWords in In-Order (ABC Order):  ";
             tree.show_InOrder();
         }else{
-            cout<<"\n\nWords in Post-Order (Reverse Order):  ";
+            cout<<"\n\nWords in Post-Order (Reversed Order):  ";
             tree.show_PostOrder();
             isPostOrder = true;
         }
@@ -97,7 +102,7 @@ int main(int argc, char** argv) {
         if(inputSort == '1')
             cout<<"Are you sure you want Pre-Order (ABC Order)? (y/n)\n";
         else if(inputSort == '2' && isPostOrder == false)
-            cout<<"Are you sure you want In-Order (Reversed Order)? (y/n)\n";
+            cout<<"Are you sure you want In-Order (ABC Order)? (y/n)\n";
         else{
             cout<<"Are you sure you want Post-Order (Reversed Order)? (y/n)\n";
         }
@@ -120,46 +125,35 @@ int main(int argc, char** argv) {
         inputSort = '1';
     
      
-    /*
+    cout<<endl;
     if(inputSort == '1'){
         //Returns strings from tree.r_getValPreOrder();
-        
-        cout<<"\r_getValPreOrder = "<<tree<<endl;
-        }else if(inputSort == '2' && isPostOrder == true){
+        cout<<"\nPre = ";
+        while(!tree.qPre.empty()){
+            cout<<tree.qPre.front()<<" ";
+            tree.qPre.pop();
+        };
+    }else if(inputSort == '2' && isPostOrder == true){
         //Returns strings from tree.r_getValPostOrder();
-        cout<<"\nr_getValPostOrder = "<<tree.r_getValPostOrder()<<endl;
+        cout<<"\nPost = ";
+        while(!tree.qPost.empty()){
+            cout<<tree.qPost.front()<<" ";
+            tree.qPost.pop();
+        };
     }else if(inputSort == '2' && isPostOrder == false){
         //Returns strings from tree.r_getValPreOrder();
-        cout<<"\nr_getValInOrder = "<<tree.r_getValInOrder()<<endl;
+        cout<<"\nIn = ";
+        while(!tree.qIn.empty()){
+            cout<<tree.qIn.front()<<" ";
+            tree.qIn.pop();
+        };
     }
  
-    */
-    
-    for(int i = 0; i < 5; i++){
-        cout<<"\r_getValPreOrder = "<<tree.wordPre[i]<<endl;
-        cout<<"\nr_getValPostOrder = "<<tree.wordPost[i]<<endl;
-        cout<<"\nr_getValInOrder = "<<tree.wordPre<<endl;
-    }
+ 
+
     
          
-    cout<<"\nIn = ";
-    while(!tree.qIn.empty()){
-        cout<<tree.qIn.front()<<" ";
-        tree.qIn.pop();
-    };
-    cout<<endl;
-    cout<<"\nPre = ";
-    while(!tree.qPre.empty()){
-        cout<<tree.qPre.front()<<" ";
-        tree.qPre.pop();
-    };
-    cout<<endl;
-    cout<<"\nPost = ";
-    while(!tree.qPost.empty()){
-        cout<<tree.qPost.front()<<" ";
-        tree.qPost.pop();
-    };
-    
+
     cout<<endl;
     return 0;
 }
