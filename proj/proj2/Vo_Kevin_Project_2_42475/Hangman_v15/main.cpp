@@ -8,6 +8,26 @@
  * Created on June 2, 2018, 11:59 AM
  */
 
+/*
+Project 2 Checklist:
+--------------------
+Hash: Located in Hash.cpp (Lines: 18 - 138)
+			Object Declaration of Hash --> Located in Hangman.cpp (Line 27)
+
+			
+Tree: Located in BalancedTree.cpp (Lines: 18 - 264)
+			Object Declaration of BalancedTree --> Located in Hangman.h (Line 33)
+
+			
+Recursive Sorts: Located in RecursiveSorts.cpp (Lines: 4 - 51)
+			Object Declaration of RecursiveSorts --> Located in Hangman.cpp (Line 30)
+
+			
+Graph: Located in Hangman.cpp (Lines: 834 – 948)
+ 
+*/
+
+
 #include <ctime>
 #include <cstdlib>
 #include <iostream> //For input output

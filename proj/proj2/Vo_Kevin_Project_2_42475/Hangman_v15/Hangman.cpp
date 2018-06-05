@@ -783,11 +783,11 @@ void Hangman::HangmanTree(){
         cout<<endl<<endl;
         
         if(inputSort == '1')
-            cout<<"Are you sure you want Pre-Order (ABC Order)? (y/n)\n";
+            cout<<"Do you want Pre-Order (ABC Order) instead? (y/n)\n";
         else if(inputSort == '2' && isPostOrder == false)
-            cout<<"Are you sure you want In-Order (ABC Order)? (y/n)\n";
+            cout<<"Do you want In-Order (ABC Order) instead? (y/n)\n";
         else{
-            cout<<"Are you sure you want Post-Order (Reversed Order)? (y/n)\n";
+            cout<<"Do you want Post-Order (Reversed Order) instead? (y/n)\n";
         }
             
         cout<<"User Input: ";
