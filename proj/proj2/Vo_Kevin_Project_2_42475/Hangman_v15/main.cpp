@@ -33,11 +33,12 @@ Graph: Located in Hangman.cpp (Lines: 834 – 948)
 #include <iostream> //For input output
 #include <fstream>  //Use to obtain words from words.txt
 #include "WordFetch.h"  
-#include "Hangman.h"
+#include "Hangman.h"    //Contains code for the game
 
 using namespace std;
 
 int main(int argc, char** argv) {
+    //Seed for RNG
     srand(time(NULL));
     
     //Declares object for Hangman class

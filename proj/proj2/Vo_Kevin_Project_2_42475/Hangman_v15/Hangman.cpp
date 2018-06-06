@@ -413,13 +413,13 @@ void Hangman::menuDisplay(){
         cout<<"Enter 3 to play Marathon Mode (choose number of rounds of "
             <<"Hangman to win."<<endl;
         cout<<"Enter 4 to enter your own word(s) THEN play with the use "
-            <<"of a Hash Table for tips"<<endl;
+            <<"of a HASH TABLE for tips"<<endl;
         cout<<"Enter 5 to display the rules"<<endl;
         cout<<"Enter 6 to display scoreboard"<<endl;
         cout<<"Enter 7 to view 25 Free Words for EZ-Mode"<<endl;
         cout<<"Enter 8 to setup game with the use of TREE and "
             <<"RECURSIVE SORTS"<<endl;
-        cout<<"Enter 9 to setup game with Graph\n";
+        cout<<"Enter 9 to setup game with GRAPH\n";
         cout<<"Enter any other key to exit"<<endl;
         cout<<"User Input: ";
         cin>>inChoice;
@@ -643,7 +643,20 @@ void Hangman::rulesDisplay(){
     cout<<"\t4) Custom Word Mode - Player add word(s) to be the mystery word(s)"
         <<"for the number of round(s) of their choosing. Afterwards the "
         <<"entered word will be a new installment of\n\t\tthe game as it is "
-        <<"now on the World List and can be called upon again.\n";
+        <<"now on the World List and can be called upon again. You can also "
+        <<"use a HASH Table of an List Array to search for a present word as"
+        <<" a hint.\n";
+    cout<<"\t5) Tree Mode - Uses 2 recursive sorts to allow Host to select "
+        <<"if they want the random words to be ascending or descending order.\n"
+        <<"\t\tThen it's inserted within a tree to which the graph will display "
+        <<"the random words and have those words be used in a game either in"
+        <<" Pre-, In-, or Post-Order\n";
+    cout<<"\t6) Graph Mode - Selects random words from the library and have "
+        <<"each word's length be inserted onto a graph so that a shorter "
+        <<"accumulated number of guesses can be\n\t\tachieved throughout the "
+        <<"multiple rounds by only using the "
+        <<"words associated to a visited vertices through Prim's Algorithm by "
+        <<"finding the Minimum Spanning Tree.";
     cout<<endl<<endl;
 
     //Returns to the menu after displaying the rules
