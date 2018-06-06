@@ -894,3 +894,7 @@ world
 cell
 happy
 phone
+pickle
+candy
+jam
+lime

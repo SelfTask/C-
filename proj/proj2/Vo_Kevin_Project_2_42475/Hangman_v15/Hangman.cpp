@@ -210,7 +210,7 @@ void Hangman::coreGame(int numRound, string mode){
                         cout<<"Enter \"2\" to guess word without losing. "
                             <<"(Once per round)\n";
                     
-                    cout<<"Enter \"3\" to see numbers you have previously entered\n";
+                    cout<<"Enter \"3\" to see letters you have previously entered\n";
                     
                     if(mode == "custom")
                         cout<<"Enter \"4\" to search Hash Table for hints on the word.\n";
