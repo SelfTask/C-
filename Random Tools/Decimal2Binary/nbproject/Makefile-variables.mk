@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=Cygwin-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/Cygwin-Windows
-CND_ARTIFACT_NAME_Debug=rnd_str_generator
-CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/rnd_str_generator
+CND_ARTIFACT_NAME_Debug=cppapplication_1
+CND_ARTIFACT_PATH_Debug=dist/Debug/Cygwin-Windows/cppapplication_1
 CND_PACKAGE_DIR_Debug=dist/Debug/Cygwin-Windows/package
-CND_PACKAGE_NAME_Debug=rndstrgenerator.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/rndstrgenerator.tar
+CND_PACKAGE_NAME_Debug=cppapplication1.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/Cygwin-Windows/package/cppapplication1.tar
 # Release configuration
-CND_PLATFORM_Release=GNU-Linux
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=rnd_str_generator
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/rnd_str_generator
-CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=rndstrgenerator.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/rndstrgenerator.tar
+CND_PLATFORM_Release=Cygwin-Windows
+CND_ARTIFACT_DIR_Release=dist/Release/Cygwin-Windows
+CND_ARTIFACT_NAME_Release=cppapplication_1
+CND_ARTIFACT_PATH_Release=dist/Release/Cygwin-Windows/cppapplication_1
+CND_PACKAGE_DIR_Release=dist/Release/Cygwin-Windows/package
+CND_PACKAGE_NAME_Release=cppapplication1.tar
+CND_PACKAGE_PATH_Release=dist/Release/Cygwin-Windows/package/cppapplication1.tar
 #
 # include compiler specific variables
 #

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /* 
  * File:   main.cpp
  * Author: dangerouspirate
@@ -30,17 +24,20 @@ int main(int argc, char** argv) {
     int lengthStr = sizeof(letters);
     
     //Generate a random length for key
-    int rndSize = rand() % 100;
+    int rndSize = (rand() % 100) + 1;   //"+ 1" is for storing the NULL
     
     //Allocate memory for random strings
     char* rndKey = new char[rndSize];
 
     //Assigning ascii values into key
-    for(int i = 0; i < rndSize; i++){
+    for(int i = 0; i < rndSize - 1; i++){
         
         rndKey[i] = letters[rand() % lengthStr];
        
     }
+    
+    //Sets the end of string as NULL
+    rndKey[rndSize - 1] = '\0';
     
     //Display key
     cout<<string(rndKey);
